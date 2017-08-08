@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <meta name="author" content="Ggzzhh" />
+    <meta name="description" content="form表单" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="js/formex.js"></script>
+</head>
+<body>
+    <form action="post" id="test-form" enctype="multipart/form-data"
+          onsubmit="return restForm()" target="_blank">
+        <!--autofocus 属性自动聚焦-->
+        <!--<input name="fave" autofocus/>-->
+        <!--disabled 属性将表单设置为不可用-->
+        <!--<input name="name" disabled/>-->
+        <!--fieldset元素将表单编组 legend属性添加说明-->
+        <fieldset>
+            <legend>这个是测试用的</legend>
+            <!--placeholder属性可以在文本框内产生一个占位式提示 value是默认值-->
+            <p>用户名：<input id="username" name="username"
+                          placeholder="you username"/></p>
+            <p>密码：<input type="password" id="password" name="password"/></p>
+            <p>手机：<input id="phone" size="13" maxlength="13"/></p>
+            <p id="err"></p>
+            <p>
+                <label for="fave">
+                    Fruit: <input list="fruitlist" id="fave" name="fave" />
+                </label>
+            </p>
+        </fieldset>
+        <!--下拉菜单 作用于fave内-->
+        <datalist id="fruitlist">
+            <option value="Apples" label="Lovely Apples" />
+            <option value="Orages">Refreshing Oranges</option>
+            <option value="Cherries" />
+        </datalist>
+
+        <button type="submit">submit</button>
+        <input type="range" step="1" min="0" max="100" value="1" id="price" name="price"/>100
+        <p>
+            <!--label中的 for 属性作用是于某一标签绑定 当点击文本自动聚焦到input中-->
+            <label for="t-email">
+                EMAIL:<input id="t-email" name="t-email"
+                       type="email" placeholder="user@domain.com"/>
+            </label>
+        </p>
+        <p>
+            <label for="t-url">
+                URL:<input id="t-url" name="t-url"
+                       type="url" placeholder="http://xxx.xxx.com"/>
+            </label>
+        </p>
+        <p>
+            <label for="date">
+                时间:<input id="date" type="date"/>
+            </label>
+        </p>
+        <p>
+            <label for="color">
+                颜色:<input id="color" type="color"/>
+            </label>
+        </p>
+        <p>
+            <label for="search">
+                搜索:<input id="search" type="search"/>
+            </label>
+        </p>
+        <p>
+            <label for="image">
+                提交:<input id="image" type="image" src="favicon.ico" width="20px" height="20px"/>
+            </label>
+        </p>
+        <input type="hidden" name="hidden" value="不显示，但是也能提交的数据"/>
+        <p>
+           <input type="file" name="filedate">
+        </p>
+    </form>
+</body>
+</html>
