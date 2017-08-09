@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格元素</title>
+    <meta name="author" content="Ggzzhh"/>
+    <meta name="description" content="学习练习">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+        tr > th {
+            text-align: left;
+            background-color: grey;
+            color: white;
+        }
+        /*具有唯一属性 only-of-type 表示选择了tr中只有一个th属性的th*/
+        tr > th:only-of-type{
+            text-align: right;
+            background-color: #b3d4fc;
+            color: grey;
+        }
+        #col1 {
+            background-color: #e71818;
+        }
+        #col3 {
+            background-color: #85ff97;
+        }
+        #col4 {
+            background-color: #e3ff80;
+        }
+        table {
+            border-bottom-color: cornsilk;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <caption>caption元素来给表格加标题</caption>
+    <colgroup id="col1" span="2" />
+    <colgroup id="col2">
+        <col id="col3"/>
+        <col id="col4"/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>rank？</th>
+        <th>第一个th</th>
+        <th colspan="2">第二个th 以及第三个</th>
+        <!--<th>第三个</th>-->
+    </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>脚脚脚</th>
+            <th>脚脚脚</th>
+            <th>脚脚脚</th>
+            <th>脚脚脚</th>
+        </tr>
+    </tfoot>
+    <tbody>
+    <tr>
+        <th>这一排有俩</th>
+        <th>Oranges</th>
+        <td rowspan="2">Orange</td>
+        <td>Large</td>
+    </tr>
+    <tr>
+        <th>只有一个th</th>
+        <td>test1test1test1test1</td>
+        <!--<td>test2test1test1test1</td>-->
+        <td>test3test1test1test1</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
