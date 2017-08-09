@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>其他表单元素</title>
+    <meta name="author" content="Ggzzhh" />
+    <meta name="description" content="A simple exampl" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
+</head>
+<body>
+<form action="#" onsubmit="return false" oninput="res.value = quant.valueAsNumber * price.valueAsNumber">
+    <input type="hidden" name="recordID" value="123" />
+    <p>
+        <label for="name">
+            Name: <input id="name" name="name" required value="Adam" />
+        </label>
+    </p>
+    <p>
+        <label for="password">
+            PWD: <input id="password" placeholder="最少6位"
+                        type="password" name="password" required pattern="^\w{6,12}$"/>
+        </label>
+    </p>
+    <p>
+        <label for="fave" style="vertical-align: top">
+            Fruit:
+            <!--select下拉菜单-->
+            <select id="fave" name="fave">
+                <optgroup label="Top choices">
+                    <option value="apples" selected label="Apples">Apples</option>
+                    <option value="oranges" label="Oranges">Oranges</option>
+                </optgroup>
+                <optgroup label="Others">
+                    <option value="cherries" label="Cherries">Cherries</option>
+                    <option value="pears" label="Pears">Pears</option>
+                </optgroup>
+            </select>
+        </label>
+    </p>
+    <!--表示输出结果output-->
+    <fieldset>
+        <legend>计算乘法结果</legend>
+        <input type="number" placeholder="Quantity" id="quant" name="quant"> X
+        <input type="number" placeholder="Price" id="price" name="price"> =
+        <output for="quant price" name="res"></output>
+    </fieldset>
+    <input type="submit" value="提交？？？">
+</form>
+</body>
+</html>
