@@ -1,0 +1,19 @@
+p ~ a {
+    border: thin black solid;
+    padding: 4px;
+}
+
+/*p span {*/
+    /*border: thin darkorange solid;*/
+    /*padding: 4px;*/
+/*}*/
+
+/*#mytable td{*/
+    /*border: thin black solid;*/
+    /*padding: 4px;*/
+/*}*/
+
+/*body > * > span, tr > th {*/
+    /*border: thin black solid;*/
+    /*padding: 4px;*/
+/*}*/

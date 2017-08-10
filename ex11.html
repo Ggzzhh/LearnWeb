@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UI伪类选择器</title>
+    <style type="text/css">
+        /*:enabled {*/
+            /*border: double bisque 3px;*/
+        /*}*/
+        /*!*被选中的*!*/
+        /*:checked + span {*/
+            /*background-color: chartreuse;*/
+            /*padding: 5px;*/
+            /*border: medium solid black;*/
+        /*}*/
+        /*!*默认的*!*/
+        /*:default {*/
+            /*outline: medium dotted blanchedalmond;*/
+        /*}*/
+        /*有效跟无效的*/
+        /*label :invalid {*/
+            /*outline: medium solid red;*/
+        /*}*/
+        /*label :valid {*/
+            /*outline: medium solid greenyellow;*/
+        /*}*/
+        p :required {
+            background-color: #999999;
+        }
+        p :optional {
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <h1>IP 是无连接的</h1>
+    <form action="#">
+        <label for="right">
+            对还是错？
+        </label>
+        <input type="checkbox" id="right" name="right" />
+        <span>对吧？</span>
+        <p>
+            <label for="name">
+                <input type="text" required id="name" />
+            </label>
+        </p>
+        <p>
+            <label for="pwd">
+                <input type="password" id="pwd" />
+            </label>
+        </p>
+
+        <button type="submit"> Submit</button>
+        <button type="reset">reset</button>
+
+    </form>
+</body>
+</html>

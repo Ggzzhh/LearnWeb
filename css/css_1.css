@@ -1,0 +1,55 @@
+/*ex10*/
+/*::first-line {*/
+    /*background-color: #999999;*/
+    /*color: white;*/
+/*}*/
+
+/*div::first-letter {*/
+    /*background-color: #85ff97;*/
+    /*color: #222222;*/
+    /*border: thin black solid;*/
+    /*padding: 4px;*/
+/*}*/
+
+/*a:before {*/
+    /*content: "Cilck ";*/
+/*}*/
+/*a:after {*/
+    /*content: " !!!!!";*/
+/*}*/
+
+/*body {*/
+    /*counter-reset: paracount;*/
+/*}*/
+
+/*p:before {*/
+    /*content: counter(paracount) "、";*/
+    /*counter-increment: paracount 3;*/
+/*}*/
+
+
+
+/*ex11*/
+/*根元素选择器*/
+/*:root {*/
+    /*border: thin black solid;*/
+    /*padding: 4px;*/
+    /*margin: 5px;*/
+/*}*/
+
+/*p > span:first-child {*/
+    /*border: dashed darkslategray 2px;*/
+    /*padding: 4px;*/
+/*}*/
+
+/*p :only-child {*/
+    /*background-color: #85ff97;*/
+/*}*/
+/*只有一个的子元素*/
+/*body :only-of-type {*/
+    /*background-color: #cccccc;*/
+/*}*/
+
+/*body :nth-of-type(2) {*/
+    /*background-color: #e3ff80;*/
+/*}*/
