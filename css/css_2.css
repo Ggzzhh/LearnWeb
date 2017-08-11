@@ -1,0 +1,26 @@
+/*ex14*/
+/*p {*/
+    /*width: 200px;*/
+    /*height: 100px;*/
+    /*border: medium double black;*/
+/*}*/
+
+/*#first {*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*#second {*/
+    /*overflow: scroll;*/
+/*}*/
+
+.toggle {
+    float: left;
+    border: medium double black;
+    width: 40%;
+    margin: 2px;
+    padding: 2px;
+}
+
+p.cleared {
+    clear: both;
+}
