@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本练习</title>
+    <style>
+        @font-face {
+            font-family: 'MyFont';
+            font-style: normal;
+            font-weight: normal;
+            src: url('myfont.woff');
+        }
+        .p1 {
+            font-family: MyFont, '微软雅黑', cursive , Arial;
+            text-shadow: 0.1em 0.1em 1px lightgray;
+
+        }
+        .p2 {
+            text-shadow: 5px 5px 10px #222222;
+        }
+    </style>
+</head>
+<body>
+<p class="p1">
+    POP - 邮局协议
+    POP 协议被邮件程序用来取回邮件服务器上面的邮件。
+    假如你的邮件程序使用 POP，那么一旦它连接上邮件服务器，你的所有的邮件都会被下载到邮件程序中（或者称之为邮件客户端）。
+</p>
+<p class="p2">
+    IMAP - 因特网消息访问协议
+    与 POP 类似，IMAP 协议同样被邮件程序使用。
+    IMAP 协议与 POP 协议之间的主要差异是：如果 IMAP 连上了邮件服务器，它不会自动地将邮件下载到邮件程序之中。
+    IMAP 使你有能力在下载邮件之前先通过邮件服务器端查看他们。通过 IMAP，你可以选择下载这些邮件或者仅仅是删除它们。
+    比方说你需要从不同的位置访问邮件服务器，但是仅仅希望回到办公室的时候再下载邮件，IMAP 在这种情况下会很有用。
+</p>
+</body>
+</html>

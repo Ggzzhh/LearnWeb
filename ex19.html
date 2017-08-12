@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>多个伸缩元素以及文本</title>
+    <style>
+        p {
+            width: 150px;
+            border: medium double black;
+            background-color: #6aff7b;
+            margin: 2px;
+            text-align: justify;
+            padding: 10px;
+            text-justify: inter-ideograph;
+            white-space: pre-line;
+        }
+        .container {
+            display: -moz-box;
+            display: -webkit-box;
+            -webkit-box-align: end;
+            -webkit-box-direction: reverse;
+            -webkit-box-pack: justify;
+        }
+        .first {
+            -moz-box-flex: 3;
+            -webkit-box-flex: 3;
+        }
+        .second {
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p class="first">
+
+        你不会用到...
+        当你写邮件时，你不会用到 TCP/IP。
+        当你写邮件时，你用到的是电子邮件程序，例如莲花软件的 Notes，微软公司出品的 Outlook，或者 Netscape Communicator 等等。（w3school 的成员们都喜欢使用大名鼎鼎的 Foxmail。）
+
+    </p>
+    <p class="second">
+        邮件程序会用到...
+        你的电子邮件程序使用不同的 TCP/IP 协议：
+        使用 SMTP 来发送邮件
+        使用 POP 从邮件服务器下载邮件
+        使用 IMAP 连接到邮件服务器
+    </p>
+    <p class="third">
+        SMTP - 简单邮件传输协议
+        SMTP 协议用于传输电子邮件。SMTP 负责把邮件发送到另一台计算机。
+        通常情况下，邮件会被送到一台邮件服务器（SMTP 服务器），然后被送到另一台（或几台）服务器，然后最终被送到它的目的地。
+        SMTP 也可以传送纯文本，但是无法传输诸如图片、声音或者电影之类的二进制数据。
+        SMTP 使用 MIME 协议通过 TCP/IP 网络来发送二进制数据。MIME 协议会将二进制数据转换为纯文本。
+    </p>
+</div>
+
+</body>
+</html>

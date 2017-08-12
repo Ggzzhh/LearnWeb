@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变换Transform</title>
+    <style>
+        .div1 {
+            font-family: sans-serif;
+            background-color: #e3ff80;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .tf {
+            width: 60px;
+            font-size: 14px;
+            border: medium solid deepskyblue;
+            color: darkorange;
+            padding: 4px;
+            /*变换 逆时针旋转45度 变宽1.2倍*/
+            /*-webkit-transform: rotate(-45deg) scaleX(1.2);*/
+            /*-moz-transform: rotate(-45deg) scaleX(1.2);*/
+            /*!*设置变换位置*!*/
+            /*transform-origin: right top;*/
+        }
+        .tf:hover {
+            transition-duration: 1.5s;
+            transform: rotate(360deg) scale(1.5) translate(2em);
+            transform-origin: right bottom;
+        }
+
+    </style>
+</head>
+<body>
+<div class="div1">
+    <div class="tf">少即是多</div>
+    使所有的句子尽可能地短。使所有的段落尽可能地短。使所有的章节尽可能地短。使您的页面尽可能地短。
+    请在段落和章节之间使用很多的留白。充斥着冗长文字的页面会赶走您的用户。
+    也不要在单一的页面上放置太多的内容。如果确实有必要传递大量的信息，
+    请尽量把内容分为小块，然后放入不同的页面中。
+    不要指望每个访问者都能把一张数千字的页面一路滚动到底。
+</div>
+</body>
+</html>

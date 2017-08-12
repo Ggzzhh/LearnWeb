@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过度transition</title>
+    <style>
+        p {
+            font-family: sans-serif, cursive;
+            background-color: #e3ff80;
+            padding: 5px;
+            border: medium double black;
+            line-height: 200%;
+        }
+
+        #span {
+            font-size: 16px;
+            border: solid medium black;
+            -webkit-transition-delay: 50ms;
+            -webkit-transition-duration: 300ms;
+        }
+
+        #span:hover {
+            background-color: darkorange;
+            font-size: 20px;
+            color: deepskyblue;
+            padding: 4px;
+            border: solid medium white;
+            /*设置延迟*/
+            -webkit-transition-delay: 100ms;
+            /*设置改变的属性*/
+            -webkit-transition-property: background-color, color, padding, border,
+            font-size;
+            /*设置动画播放时长*/
+            -webkit-transition-duration: 500ms;
+            /*设置变化风格*/
+            -webkit-transition-timing-function: linear;
+        }
+    </style>
+</head>
+<body>
+<p>
+    用户都是浏览者
+    如果您认为一般的用户会完完整整地阅读您的网页，那么您就错了。
+    无论您在网页中发布了多么有用的信息，一个<span id="span">访问者</span>
+    在决定是否继续阅读之前仅仅会花几秒钟的时间进行浏览。
+    如果您希望用户阅读您的文字，请确保在页面段落的第一句就说明您的观点。
+    另外，您还需要在整个页面中使用简短的段落以及有趣的标题。
+</p>
+</body>
+</html>
