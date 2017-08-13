@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改模型(增删改查子元素）</title>
+    <style>
+        table {
+            border: solid thin black;
+            border-collapse: collapse;
+            margin: 10px;
+        }
+        td {
+            padding: 4px 5px;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <thead>
+        <th>Name</th>
+        <th>Color</th>
+        </thead>
+        <tbody id="fruits">
+            <tr>
+                <td>Banana</td>
+                <td>Yellow</td>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>Red/Green</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button id="add">Add Element</button>
+    <button id="remove">Remove Element</button>
+
+    <script>
+        var tab = document.getElementById('fruits');
+        
+        document.getElementById('add').onclick = function () {
+            var row = tab.appendChild(document.createElement('tr'));
+            row.setAttribute('class', 'newrow');
+            row.appendChild(document.createElement("td"))
+                .appendChild(document.createTextNode('plum'));
+            row.appendChild(document.createElement('td'))
+                .appendChild(document.createTextNode('Purple'))
+        };
+        
+        document.getElementById("remove").onclick = function () {
+            var row = document.getElementsByClassName('newrow')[0];
+            if (row) {
+                row.parentNode.removeChild(row);
+            }
+
+        }
+    </script>
+</body>
+</html>

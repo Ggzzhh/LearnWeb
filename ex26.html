@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>获取HTML对象、使用DOM元素</title>
+    <style>
+        p {
+            border: medium double black;
+        }
+        p.newclass {
+            background-color: #999999;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<p id="textblock" dir="ltr" lang="zh-CN" class="class1 class2">
+    他们使用什么显示器？
+    请记住，在 web 上并非所有用户都使用与您相同的显示器。
+    如果您针对 1024x768 分辨率的现实设计网页，
+    <span id="banana">Banana</span>
+    那么某些使用低分辨率显示器的访问者在阅读您的网页时就会出现问题。
+    尽管某些用户仍然在使用 640x480 分辨率的显示器，但是 800x600 是低分辨率标准的趋势。
+    W3SCHOOL 被设计为支持 1024x768 以上的分辨率。
+    <span id="apple">Apple</span>
+    如果您是拥有极高分辨率的开发人员中的一员，请确保使用了不同的低分辨率显示器来测试您的网页。
+    当设计网页布局时有一种明智的方法是，把页面的某个部分设计为可变的尺寸，
+    <span id="orange">Orange</span>
+    这样就可以适应更大或更小的分辨率显示器。
+</p>
+<pre id="results">
+
+</pre>
+<button id="touch">点</button>
+<button id="toggle">toggle(切换) class</button>
+<script>
+    var results = document.getElementById('results');
+    var elem = document.getElementById('textblock');
+
+    results.innerHTML += "tag: " + elem.tagName + "\n";
+    results.innerHTML += "id: " + elem.id + "\n";
+    results.innerHTML += "dir: " + elem.dir + "\n";
+    var text = "lang: " + elem.lang + "\n" + "hidden: " + elem.hidden + "\n" +
+            "disabled: " + elem.disabled + "\n";
+    elem.setAttribute('lang', 'zh');
+    text += "lang属性更改后: " + elem.getAttribute('lang') + "\n";
+    results.innerHTML += text;
+    document.getElementById('touch').onclick = function (e) {
+        document.getElementById('textblock').className += 'newclass ';
+    };
+
+    document.getElementById('toggle').onclick = toggleClass;
+
+    listClasses();
+
+    function listClasses() {
+        var classlist = document.getElementById('textblock').classList;
+        results.innerHTML += "现在的class: ";
+        for (var i = 0; i < classlist.length; i++) {
+            results.innerHTML += classlist[i] + " ";
+        }
+    }
+
+    function toggleClass() {
+//        toggle 检查有没有这个class 有就删除 没有就添加
+        document.getElementById('textblock').classList.toggle('newclass');
+        listClasses()
+    }
+
+</script>
+</body>
+</html>

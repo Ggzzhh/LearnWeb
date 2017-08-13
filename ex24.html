@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM 文档对象模型 Document Object Model</title>
+    <meta name="author" content="Ggzzhh" />
+    <meta name="description" content="A simple Example" />
+
+</head>
+<body>
+<p class="first" id="first">
+    导航
+    尽量创建通用于网站中所有页面的导航结构。
+    把文本段落中的<span id="a-link">超链接</span>使用量降至最低。
+    请不要使用文本段落内的超链接随意地把访问者带到别的页面。
+    因此这样做会破坏导航结构一致性的感觉。
+    如果您必须使用超级链接，请把它们添加到段落的底部，或站点的导航菜单。
+</p>
+
+<p class="second" id="second">
+    下载速度
+    最常见的错误是用于网站开发者的开发环境造成的，例如使用一台本地的机器开发站点，
+    或者使用一条高速的因特网连接。开发人员有时不会意识到下载他们的页面要花很长的时间。
+    因特网可用性方面的研究告诉我们，如果网页的下载时间超过7秒，大多数的访问者会选择离开。
+    在您发布任何大量的内容前，请确保这些页面在低速的调制解调器连接上进行过测试。
+    如果您的页面需要花大量的时间下载，您或许应当考虑删除某些图片或多媒体内容。
+</p>
+<script>
+    document.writeln("<pre>URL: " + document.URL);
+    var elems = document.getElementsByTagName("p");
+    for (var i = 0; i < elems.length; i++) {
+        document.writeln("Element ID: " + elems[i].id);
+        elems[i].style.border = "medium double black";
+        elems[i].style.padding = String((i + 1) * 20) + "px";
+    }
+//    document.writeln("</pre>");
+    document.writeln("characterSet: " + document.characterSet);
+    document.writeln("charset: " + document.charset);
+    document.writeln("compatMode: " + document.compatMode);
+    document.writeln("defaultCharset: " + document.defaultCharset);
+    document.writeln("dir: " + document.dir);
+    document.writeln("domain: " + document.domain);
+    document.writeln("lastModified: " + document.lastModified);
+    document.writeln("referrer: " + document.referrer);
+    document.writeln("title: " + document.title);
+    document.writeln("</pre>");
+</script>
+</body>
+</html>
