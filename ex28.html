@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>操作DOM使用HTML片段</title>
+    <style>
+        table {
+            border: solid thin black;
+            border-collapse: collapse;
+            margin: 10px;
+            float: left;
+        }
+
+        td {
+            padding: 4px 5px;
+        }
+
+        p {
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    <!--<table border="1">-->
+        <!--<thead><tr><th>Fruit</th><th>Color</th></tr></thead>-->
+        <!--<tbody>-->
+            <!--<tr id="applerow"><td>Plum</td><td>Purple</td></tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+    <!--<textarea rows="3" id="results">-->
+
+    <!--</textarea>-->
+<!--<p>-->
+    <!--<button id="inner">innerHTML</button>-->
+    <!--<button id="outer">outerHTML</button>-->
+<!--</p>-->
+<!--<script>-->
+    <!--var results = document.getElementById('results');-->
+    <!--var row = document.getElementById('applerow');-->
+
+    <!--document.getElementById("inner").onclick = function () {-->
+        <!--results.innerHTML = row.innerHTML;-->
+    <!--};-->
+
+    <!--document.getElementById('outer').onclick = function () {-->
+        <!--results.innerHTML = row.outerHTML;-->
+    <!--};-->
+
+
+    <table border="1">
+        <thead><tr><th>Fruit</th><th>Color</th></tr></thead>
+        <tbody>
+        <tr><td>Plum</td><td>Purple</td></tr>
+        <tr id="apple"><td>Apple</td><td>Red</td></tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <thead><tr><th>Fruit</th><th>Color</th></tr></thead>
+        <tbody>
+        <tr><td>banana</td><td>yellow</td></tr>
+        <tr id="targetrow"><td colspan="2">啊呵呵呵呵呵</td></tr>
+        </tbody>
+    </table>
+
+    <p>
+        <button id="move">移动</button>
+    </p>
+    <script>
+        document.getElementById('move').onclick = function () {
+            var source = document.getElementById('apple');
+            var target = document.getElementById('targetrow');
+            var temp = target.outerHTML;
+            target.outerHTML = source.outerHTML;
+            source.outerHTML = temp;
+
+        };
+    </script>
+</body>
+</html>

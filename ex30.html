@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>向文本快插入元素</title>
+</head>
+<body>
+    <p id="textblock">
+        易用性
+        易用性是 HTML 标准的一个重要部分。
+        标准使得残疾人士更容易地使用 web。盲人可使用计算机为他们读出网页。
+        而弱视的人士可重新排列并放大网页。简单的 web 标准，
+        比如 HTML 和 CSS，将使您的网页更容易被语音阅读器和其他不常见的输出设备理解。
+    </p>
+<p>
+    <button id="insert">插入b标签</button>
+</p>
+
+<script>
+    document.getElementById('insert').onclick = function () {
+        var text = document.getElementById('textblock');
+        text.firstChild.splitText(9);
+        var newText = text.childNodes[1].splitText(3).previousSibling;
+        text.insertBefore(document.createElement("b"),
+        newText).appendChild(newText);
+    }
+</script>
+
+</body>
+</html>
