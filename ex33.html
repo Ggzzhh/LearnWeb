@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单事件处理</title>
+    <style>
+        p {
+            background: gray;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border: medium solid black;
+        }
+    </style>
+</head>
+<body>
+    <p onmouseover="this.style.background='yellow'; this.style.color='black';"
+        onmouseout="this.style.removeProperty('background')">
+        改变 HTML 内容
+        修改 HTML 内容的最简单的方法时使用 innerHTML 属性。
+        如需改变 HTML 元素的内容，请使用这个语法：
+        document.getElementById(id).innerHTML=new HTML
+    </p>
+
+    <form>
+        <p>
+            <label for="fave">水果: <input autofocus id="fave" name="fave"></label>
+        </p>
+        <p>
+            <label for="name">名字：<input id="name" name="name"/></label>
+        </p>
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+    </form>
+    <span id="message"></span>
+    <script>
+        var inputElems = document.getElementsByTagName('input');
+        for (var i = 0; i < inputElems.length; i++) {
+            inputElems[i].onfocus = handleFoucesEvent;
+            inputElems[i].onblur = handleFoucesEvent;
+            inputElems[i].onkeyup = handleKeyboardEvent;
+        }
+
+        function handleFoucesEvent(e) {
+            if (e.type === 'focus') {
+                e.target.style.backgroundColor = 'lightgray';
+                e.target.style.border = '10px double red';
+            }
+            else {
+                e.target.style.removeProperty('background-color');
+                e.target.style.removeProperty('border');
+
+            }
+        }
+
+        function handleKeyboardEvent(e) {
+            document.getElementById('message').innerHTML = "key pressed:" + e.keyCode + "<br/>char："
+                + String.fromCharCode(e.keyCode);
+        }
+    </script>
+</body>
+</html>

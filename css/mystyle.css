@@ -1,8 +1,22 @@
-p ~ a {
+p {
     border: thin black solid;
+    background-color: silver;
     padding: 4px;
 }
-
+#block1 {
+    color: white;
+    border: thick solid black;
+    background-color: #cccccc;
+}
+table {
+    border: thin solid black;
+    border-collapse: collapse;
+    margin: 5px 5px;
+    float: left;
+}
+td {
+    padding: 2px;
+}
 /*p span {*/
     /*border: thin darkorange solid;*/
     /*padding: 4px;*/

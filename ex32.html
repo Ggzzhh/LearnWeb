@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>CSSRuleList练习</title>
+    <link type="text/css" rel="stylesheet" href="css/mystyle.css" />
+
+</head>
+<body>
+<p id="block1">
+    通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。
+JavaScript 能够改变页面中的所有 HTML 元素
+JavaScript 能够改变页面中的所有 HTML 属性
+JavaScript 能够改变页面中的所有 CSS 样式
+JavaScript 能够对页面中的所有事件做出反应
+    </p>
+<p id="block2">
+查找 HTML 元素
+通常，通过 JavaScript，您需要操作 HTML 元素。
+为了做到这件事情，您必须首先找到该元素。有三种方法来做这件事：
+通过 id 找到 HTML 元素
+通过标签名找到 HTML 元素
+通过类名找到 HTML 元素
+    </p>
+<div><button id="pressme">点击</button></div>
+<div id="placeholder"></div>
+
+<script>
+    var placeholder = document.getElementById('placeholder');
+    proStyleSheet();
+
+    document.getElementById('pressme').onclick = function () {
+        document.styleSheets[0].cssRules.item(1).selectorText = '#black2';
+
+        if (placeholder.hasChildNodes()) {
+            var childCount = placeholder.childNodes.length;
+            for (var i = 0; i < childCount; i++) {
+                placeholder.removeChild(placeholder.firstChild);
+            }
+        }
+        proStyleSheet();
+    }
+
+    function proStyleSheet() {
+        var rulesList = document.styleSheets[0].cssRules;
+
+        for (var i = 0; i < rulesList.length; i++) {
+            var rule = rulesList.item(1);
+
+            var newElem = document.createElement("table");
+            newElem.setAttribute("border", "1");
+            addRow(newElem, "parentStyleSheet", rule.parentStyleSheet.title);
+            addRow(newElem, "selectorText", rule.selectorText);
+            addRow(newElem, "cssText", rule.cssText);
+            placeholder.appendChild(newElem);
+
+        }
+    }
+
+    function addRow(elem, header, value) {
+        elem.innerHTML += "<tr><td>" + header + ":</td><td>" + value +"</td></tr>";
+    }
+</script>
+
+</body>
+</html>
