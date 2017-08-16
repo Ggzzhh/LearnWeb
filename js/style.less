@@ -1,0 +1,54 @@
+//定义变量
+@color: red;
+@switch: light;
+//可以用变量定义变量
+@color2: @color;
+p {
+  background-color: @color2;
+}
+
+.class1 {
+  width: 500px;
+  height: 300px;
+  background-color: #999999;
+  border: medium double black;
+  color: white;
+  .box-shadow(-5px, -10px, 3px, #6b6b6b);
+}
+//可以把一个类的设定复制到另一个类中去 id 属性也可以这样做
+//哪个颜色定义在后面那个颜色生效
+.class2 {
+  color: @color;
+  .class1;
+  .border-radius(10px);
+  .mixin(@switch, @color)
+}
+
+//也可以设定带参数的类 包括默认值 然后在上面运用也可以
+.border-radius (@radius: 5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+//@arguments变量包含了传入的所有参数 例如：
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+//模式匹配和导引表达式
+
+//让.mixin根据不同的@switch值而表现各异，如下这般设置：
+.mixin (dark, @color) {
+  color: darken(@color, 10%);
+}
+
+.mixin (light, @color) {
+  color: lighten(@color, 10%);
+}
+
+.mixin (@_, @color) {
+  display: block;
+}

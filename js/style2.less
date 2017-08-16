@@ -1,0 +1,47 @@
+////less中的判断语句 lightness 是明亮度
+//.mixin (@a) when (lightness(@a) >= 50%) {
+//  background-color: black;
+//}
+//
+//.mixin (@a) when (lightness(@a) < 50%) {
+//  background-color: #6aff7b;
+//}
+//
+//.mixin (@a) {
+//  color: #e3ff80;
+//}
+//
+//.class1 {
+//  .mixin(#ddd);
+//}
+//
+//.class2 {
+//  .mixin(#555);
+//}
+//
+//下面就是常见的检测函式：
+//
+//iscolor
+//isnumber
+//isstring
+//iskeyword
+//isurl
+//例子： .mixin (@a) when (iscolor(@a)) and not (@a > 0) {...}
+
+//嵌套
+
+body {
+  background-color: #e3ff80;
+  .class1 {
+    color: blueviolet;
+  }
+  .class2 {
+    color: @color2;
+    & :hover {
+      text-decoration: none;
+    }
+  }
+}
+
+//LESS中可以进行运算
+@color2: red + 111111; //#ffffff
