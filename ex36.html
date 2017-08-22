@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax 错误处理</title>
+</head>
+<body>
+在js中使用try/catch 来捕获异常
+跟python中的try/ except一样
+<div id="msg">
+
+</div>
+<script>
+    var httpRequest = new XMLHttpRequest();
+    try {
+        httpRequest.open("GET", "ex1.html");
+        httpRequest.onerror = handleError;
+        httpRequest.onload = handleError;
+        httpRequest.send();
+    }
+    catch (error) {
+        document.getElementById('msg').innerHTML = error.message;
+    }
+
+    function handleError(e) {
+        document.getElementById('msg').innerHTML = "发生错误：" + httpRequest.status
+            + " " + httpRequest.statusText + "!";
+    }
+</script>
+</body>
+</html>

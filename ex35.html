@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example AJAX起步</title>
+    <meta name="author" content="Ggzzhh" />
+    <style>
+        table {
+            margin: 10px;
+            border-collapse: collapse;
+            float: left;
+        }
+        div {
+            margin: 10px;
+            float: left;
+        }
+        td, th {
+            padding: 4px;
+        }
+    </style>
+
+</head>
+<body>
+    <div >
+        <button>ex13</button>
+        <button>ex2</button>
+        <button>ex33</button>
+    </div>
+    <table id="events" border="1">
+
+    </table>
+    <div id="target">
+        Press a button
+    </div>
+
+    <script>
+        var buttons = document.getElementsByTagName('button');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = handleButtonPress;
+        }
+
+        var httpRequest;
+
+        function handleButtonPress(e) {
+            clearEventDetails();
+//            创建一个新的XMLHttpRequest对象
+            httpRequest = new XMLHttpRequest();
+//            触发onreadystatechange(在请求生命周期的不同阶段触发）事件后运行handleResponse函数进行事件处理
+            httpRequest.onreadystatechange = handleResponse;
+//            在请求失败时触发
+            httpRequest.onerror = handleError;
+//            在请求成功时触发
+            httpRequest.onload = handleLoad;
+//            在请求完成时触发 不管成功还是失败
+            httpRequest.onloadend = handleLoadEnd;
+//            在请求开始时触发
+            httpRequest.onloadstart = handleLoadStart;
+//            触发以提示请求的进度
+            httpRequest.onprogress = handleProgress;
+//            告诉XMLHttpRequest对象你要干什么，用get方法请求打开URL
+            httpRequest.open("GET", e.target.innerHTML + ".html");
+//            调用方法请求HTML文档
+            httpRequest.send();
+        }
+
+        function handleResponse(e) {
+            displayEventDetails("readystate(" + httpRequest.readyState + ")");
+//            当事件响应完成且状态码为200时，设置div的内容
+            if (e.target.readyState === 4 &&
+                e.target.status === 200) {
+//                内容是响应的文本 也就是从服务器上取回的数据
+                document.getElementById('target').innerHTML
+                    = e.target.responseText;
+            }
+        }
+
+        function handleError(e) {
+            displayEventDetails("error", e);
+        }
+
+        function handleLoad(e) {
+            displayEventDetails("load", e);
+        }
+        
+        function handleLoadEnd(e) {
+            displayEventDetails("loadend", e);
+        }
+        
+        function handleLoadStart(e) {
+            displayEventDetails("loadstart", e);
+        }
+        
+        function handleProgress(e) {
+            displayEventDetails("progress", e);
+        }
+
+        function clearEventDetails() {
+            document.getElementById("events").innerHTML =
+                "<tr><th>Event事件</th><th>lengthComputable长度计算</th>"
+                + "<th>loaded加载</th><th>total总计</th></tr>";
+        }
+
+        function displayEventDetails(eventName, e) {
+            if (e) {
+                document.getElementById('events').innerHTML +=
+                    "<tr><td>" + eventName + "</td><td>" + e.lengthComputable
+                    + "</td><td>" + e.loaded + "</td><td>" + e.total
+                    + "</td></tr>";
+            }
+            else {
+                document.getElementById('events').innerHTML +=
+                    "<tr><td>"+ eventName +
+                    "</td><td>Na</td><td>Na</td><td>Na</td></tr>";
+            }
+        }
+
+    </script>
+</body>
+</html>
