@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax(2)</title>
+    <style>
+        .table {
+            display: table;
+        }
+        .row {
+            display: table-row;
+        }
+        .cell {
+            display: table-cell;
+        }
+        .label {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="ctheader"></div>-->
+    <!--<div id="allheader"></div>-->
+    <form id="fruit" method="post" action="ex33.html" class="table">
+        <div class="row">
+            <div class="cell label">Bananas</div>
+            <div class="cell" ><input name="bananas" value="2" /></div>
+        </div>
+        <div class="row">
+            <div class="cell label">Apples</div>
+            <div class="cell" ><input name="apples" value="5" /></div>
+        </div>
+        <div class="row">
+            <div class="cell label">Cherries</div>
+            <div class="cell" ><input name="cherries" value="20" /></div>
+        </div>
+        <div class="row">
+            <div class="cell label">Progress:</div>
+            <div class="cell" ><progress id="prog" value="0"/></div>
+        </div>
+        <div class="row">
+            <div class="cell label">Total</div>
+            <div class="cell" id="results">0 items</div>
+        </div>
+        <button id="submit">提交form</button>
+    </form>
+
+<script>
+//    var httpRequest = new XMLHttpRequest();
+//    httpRequest.onreadystatechange = handleResponse;
+//    httpRequest.open("GET", "ex35.html");
+//    httpRequest.send();
+//
+//
+//    function handleResponse() {
+//        document.getElementById('ctheader').innerHTML =
+//            httpRequest.getResponseHeader('Content-Type');
+//        document.getElementById('allheader').innerHTML =
+//            httpRequest.getAllResponseHeaders();
+//    }
+
+//    点击提交按钮调用handleButtonPress函数
+    document.getElementById('submit').onclick = handleButtonPress;
+
+    var httpRequest;
+
+    function handleButtonPress(e) {
+//        取消事件的默认动作 本例就是阻止直接提交数据
+        e.preventDefault();
+
+        var form = document.getElementById('fruit');
+        var progress = document.getElementById('prog');
+//        创建一个新的对象（类似字典）
+        var formData = {};
+        var inputElements = document.getElementsByTagName('input');
+
+        for (var i = 0; i < inputElements.length; i++) {
+//            给这个对象添加值 本例就是添加所有的表单数据
+            formData[inputElements[i].name] = inputElements[i].value;
+        }
+
+        httpRequest = new XMLHttpRequest();
+//        获取请求进度
+        var upload = httpRequest.upload;
+        upload.onprogress = function (e) {
+            progress.max = e.total;
+            progress.value = e.loaded;
+        };
+        upload.onload = function () {
+            progress.value = 1;
+            progress.max = 1;
+        };
+        httpRequest.onreadystatechange = handleResponse;
+        httpRequest.open("POST", form.action);
+//        设置请求首部的请求内容为application/json 准备发送格式为json格式的数据
+        httpRequest.setRequestHeader("content-Type", 'application/json');
+//        发送请求数据 异步属性默认为true JSON.stringify为制定对象创建用JSON编码的数据 parse解码JSON格式
+        httpRequest.send(JSON.stringify(formData));
+
+    }
+
+    function handleResponse() {
+        if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+//            如果想覆盖Content-type标头并制定自己的数据类型 用overrideMimeType方法
+            httpRequest.overrideMimeType("text/html");
+            document.getElementById('results').innerHTML =
+                httpRequest.responseText;
+        }
+    }
+
+</script>
+</body>
+</html>
