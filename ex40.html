@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas(1)</title>
+    <style>
+        canvas {
+            border: thin solid black;
+            margin: 4px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-1" width="500" height="140">
+        你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
+    </canvas>
+
+
+    <canvas id="canvas-2" width="500" height="140">
+        你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
+    </canvas>
+
+
+    <script>
+        var ctx_1 = document.getElementById('canvas-1').getContext("2d");
+        var ctx_2 = document.getElementById('canvas-2').getContext("2d");
+
+        var offset = 10;
+        var size = 50;
+        var count = 5;
+
+        for (var i = 0; i < count; i ++) {
+            ctx_1.lineWidth = i + 2;
+            ctx_1.fillRect(i * (offset + size) + offset, offset, size, size);
+            ctx_1.strokeRect(i * (offset + size) + offset, (2 * offset) + size, size, size);
+            ctx_1.clearRect(i * (offset + size) + offset, offset + 5, size, size - (i * 10));
+        }
+
+
+
+    </script>
+</body>
+</html>
