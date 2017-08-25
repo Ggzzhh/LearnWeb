@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas(2)渐变 grad</title>
+    <style>
+        canvas {
+            border: solid medium black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="140">
+        更新浏览器才能用<code>canvas</code>元素
+    </canvas>
+    <script>
+        var ctx = document.getElementById('canvas').getContext('2d');
+//        创建一个渐变线 从10，10 开始到 60， 50 结束的一条直线为渐变线
+        var grad = ctx.createLinearGradient(10, 10, 60, 50);
+//        创建一个径向渐变 前三个参数分别是第一个圆的圆心位置和半径， 后三个是第二个元的参数
+        var grad_2 = ctx.createRadialGradient(250, 70, 20, 200, 60, 100);
+//        0， 0.5， 1分别代表头 尾 结束时的颜色设置
+        grad.addColorStop(0, "red");
+        grad.addColorStop(0.5, "white");
+        grad.addColorStop(1, "black");
+        grad_2.addColorStop(0, "blue");
+        grad_2.addColorStop(0.5, "white");
+        grad_2.addColorStop(1, "black");
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(10, 10, 50, 40);
+
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = grad_2;
+        ctx.strokeRect(250, 20, 75, 50);
+    </script>
+</body>
+</html>

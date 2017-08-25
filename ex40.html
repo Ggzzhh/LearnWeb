@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>Canvas(1)</title>
     <style>
+        div {
+            float: left;
+        }
         canvas {
             border: thin solid black;
             margin: 4px;
@@ -11,31 +14,69 @@
     </style>
 </head>
 <body>
-    <canvas id="canvas-1" width="500" height="140">
-        你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
-    </canvas>
+    <div>
+        <canvas id="canvas-1" width="500" height="140">
+            你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
+        </canvas>
 
 
-    <canvas id="canvas-2" width="500" height="140">
-        你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
-    </canvas>
+        <canvas id="canvas-2" width="500" height="140">
+            你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
+        </canvas>
+    </div>
 
+
+    <div>
+        <canvas id="canvas-3" width="500" height="140">
+            你的浏览器不能使用<code>canvas</code>标签,请更换或者升级浏览器
+        </canvas>
+    </div>
 
     <script>
+//        创建一个平面的canvas对象
         var ctx_1 = document.getElementById('canvas-1').getContext("2d");
         var ctx_2 = document.getElementById('canvas-2').getContext("2d");
+        var ctx_3 = document.getElementById('canvas-3').getContext("2d");
 
         var offset = 10;
         var size = 50;
         var count = 5;
 
         for (var i = 0; i < count; i ++) {
+//            设置这个canvas内的边框粗细
             ctx_1.lineWidth = i + 2;
+//            创建一个实心矩形
             ctx_1.fillRect(i * (offset + size) + offset, offset, size, size);
+//            创建一个空心矩形
             ctx_1.strokeRect(i * (offset + size) + offset, (2 * offset) + size, size, size);
+//            擦除所描述的矩形的内容
             ctx_1.clearRect(i * (offset + size) + offset, offset + 5, size, size - (i * 10));
         }
 
+        ctx_2.lineWidth = 20;
+//        让边线变成圆角的
+        ctx_2.lineJoin = "round";
+        ctx_2.strokeRect(20, 20, 100, 100);
+//        让边线现变成平角的
+        ctx_2.lineJoin = "bevel";
+        ctx_2.strokeRect(160, 20, 100, 100);
+//        默认边线 锐角
+        ctx_2.lineJoin = "miter";
+        ctx_2.strokeRect(300, 20, 100, 100);
+
+        ctx_3.lineWidth = 3;
+        var fillColors = ["black", "grey", "lightgrey", "red", "blue"];
+        var strokeColors = ["rgb(0,0,0)", "rgb(100,100,10)",
+            "rgb(200,200,200)", "rgb(255,0,0)", "rgb(0,0,255)"];
+
+        for (i = 0; i < count; i++) {
+//            设置边线或者内容颜色
+            ctx_3.fillStyle = fillColors[i];
+            ctx_3.strokeStyle = strokeColors[i];
+
+            ctx_3.fillRect(i * (offset + size) + offset, offset, size, size);
+            ctx_3.strokeRect(i * (offset + size) + offset, (2 * offset) + size, size, size)
+        }
 
 
     </script>
