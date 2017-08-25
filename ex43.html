@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas（4） Example</title>
+    <style>
+        canvas {
+            border: solid thin black;
+        }
+        body > * {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <video id="vid" hidden src="test.mp4" preload="auto" width="360"
+           height="240" autoplay controls></video>
+    <canvas id="canvas" width="360" height="240">
+
+    </canvas>
+    <div>
+        <button id="pressme">点我！！！</button>
+    </div>
+    <canvas id="canvas2" width="360" height="240">
+
+    </canvas>
+    <script>
+        var srcCanvas = document.getElementById('canvas');
+        var ctx = document.getElementById('canvas').getContext("2d");
+        var imageElement = document.getElementById('vid');
+        var ctx2 = document.getElementById('canvas2').getContext('2d');
+        var width = 100;
+        var height = 10;
+        document.getElementById('pressme').onclick = takeSnapshot;
+        ctx.lineWidth = 5;
+        ctx.storkeStyle = "red";
+        ctx2.lineWidth = 30;
+        ctx2.strokeStyle = "blue";
+
+        setInterval(function () {
+            ctx.drawImage(imageElement, 0, 0, 360, 200);
+            ctx.strokeRect(180 / (width / 2), 120 - (height/2), width, height);
+        }, 25);
+
+        setInterval(function () {
+            width = (width + 1) % 200;
+            height = (height + 3) % 200;
+        });
+
+        function takeSnapshot() {
+            ctx2.drawImage(srcCanvas, 0, 0, 360, 240);
+            ctx2.strokeRect(0, 0, 360, 240);
+        }
+    </script>
+</body>
+</html>
