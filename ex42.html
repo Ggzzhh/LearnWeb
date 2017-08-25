@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas(3)</title>
+    <style>
+        canvas {
+            border: solid medium black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="140">
+    更新浏览器才能用<code>canvas</code>元素
+</canvas>
+<div>
+    <button>Save</button>
+    <button>Restore</button>
+</div>
+
+
+<script>
+    var ctx = document.getElementById('canvas').getContext("2d");
+
+    var grad = ctx.createLinearGradient(500, 0, 500, 140);
+    grad.addColorStop(0, "red");
+    grad.addColorStop(0.5, "white");
+    grad.addColorStop(1, "black");
+
+    var colors = ["black", grad, "red", "green", "yellow", "black", "grey"];
+
+    var cIndex = 0;
+
+    var buttons = document.getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = handleButtonPress;
+    }
+
+    function handleButtonPress(e) {
+        switch (e.target.innerHTML) {
+            case 'Save':
+//                save是把当前的样式储存在栈格式中
+                ctx.save();
+                cIndex = (cIndex + 1) % colors.length;
+                ctx.fillStyle = colors[cIndex];
+                ctx.fillRect(0, 0, 500, 140);
+                break;
+            case 'Restore':
+                cIndex = Math.max(0, cIndex -1);
+//                restore释放栈中第一个储存的样式
+                ctx.restore();
+                ctx.fillRect(0, 0, 500, 140);
+                break;
+        }
+    }
+</script>
+</body>
+</html>
