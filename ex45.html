@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas(6) 相应鼠标绘制圆弧</title>
+    <link rel="stylesheet" type="text/css" href="css/css_2.css">
+</head>
+<body>
+<canvas id="canvas-1" width="500" height="240">
+    你需要升级浏览器才能应用<code>canvas</code>模块
+</canvas>
+
+<canvas id="canvas" width="500" height="240">
+    你需要升级浏览器才能应用<code>canvas</code>模块
+</canvas>
+
+<script>
+    var canvasElem = document.getElementById('canvas-1');
+    var ctx = canvasElem.getContext('2d');
+
+    var point1 = [100, 110];
+    var point2 = [200, 10];
+    var point3 = [200, 110];
+
+    draw();
+    //  当鼠标移动到画布上的时候调用该函数
+    canvasElem.onmousemove = function (e) {
+    //  按下ctrl移动第一个点的位置 shift移动第二个点位置 否则就移动第三个点的位置 跟随鼠标移动
+        if (e.ctrlKey) {
+            point1 = [e.clientX, e.clientY];
+        }
+        else if (e.shiftKey) {
+            point2 = [e.clientX, e.clientY];
+        }
+        else {
+            point3 = [e.clientX, e.clientY];
+        }
+        ctx.clearRect(0, 0, 500, 240);
+        draw();
+    }
+
+    function draw() {
+
+        ctx.fillStyle = "yellow";
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 5;
+
+        ctx.beginPath();
+        ctx.moveTo(point1[0], point1[1]);
+        ctx.arcTo(point2[0], point2[1], point3[0], point3[1], 50);
+        ctx.stroke();
+
+        drawPoint(point1[0], point1[1]);
+        drawPoint(point2[0], point2[1]);
+        drawPoint(point3[0], point3[1]);
+
+        ctx.beginPath();
+        ctx.moveTo(point1[0], point1[1]);
+        ctx.lineTo(point2[0], point2[1]);
+        ctx.lineTo(point3[0], point3[1]);
+        ctx.stroke();
+    }
+
+    function drawPoint(x, y) {
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "red";
+        ctx.strokeRect(x-2, y-2, 4, 4);
+    }
+
+
+    var c_arc = document.getElementById('canvas').getContext('2d');
+    c_arc.fillStyle = 'yellow';
+    c_arc.lineWidth = "4";
+
+    c_arc.beginPath();
+    c_arc.arc(70, 70, 60, 0, Math.PI * 2, true);
+    c_arc.stroke();
+
+    c_arc.beginPath();
+    c_arc.arc(200, 70, 60, Math.PI / 2, Math.PI, true);
+    c_arc.fill();
+    c_arc.stroke();
+
+    c_arc.beginPath();
+    var val = 0;
+    for (var i = 0; i < 4; i++) {
+        c_arc.arc(350, 70, 60, val, val + Math.PI / 4, false);
+        val += Math.PI/2;
+    }
+    c_arc.closePath();
+    c_arc.fill();
+    c_arc.stroke();
+</script>
+</body>
+</html>
