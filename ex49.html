@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>获取地理定位</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 4px;
+        }
+        th {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>经度:</th><td id="longitude">-</td>
+        <th>维度:</th><td id="latitude">-</td>
+    </tr>
+    <tr>
+        <th>海拔:</th><td id="altitude">-</td>
+        <th>精度:</th><td id="accuracy">-</td>
+    </tr>
+    <tr>
+        <th>海拔高度准确性</th><td id="altitudeAccuracy">-</td>
+        <th>标题：</th><td id="heading">-</td>
+    </tr>
+    <tr>
+        <th>Speed:</th><td id="speed">-</td>
+        <th>时间戳：</th><td id="timestamp">-</td>
+    </tr>
+</table>
+
+<script>
+    navigator.geolocation.getCurrentPosition(displayPosition);
+
+    function displayPosition(pos) {
+        var properties = ["longitude", "latitude", "altitude", "accuracy",
+            "altitudeAccuracy", "heading", "speed"];
+
+        for (var i = 0; i < properties.length; i++) {
+            var value = pos.coords[properties[i]];
+            document.getElementById(properties[i]).innerHTML = value;
+        }
+        document.getElementById('timestamp').innerHTML = pos.timestamp;
+    }
+</script>
+</body>
+</html>

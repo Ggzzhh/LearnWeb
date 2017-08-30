@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas(5) 用路径绘图</title>
+    <link rel="stylesheet" href="css/css_2.css" type="text/css"/>
+</head>
+<body>
+<canvas id="canvas" width="900" height="240">
+
+</canvas>
+
+<canvas id="arc" width="900" height="240">
+
+</canvas>
+
+<script>
+    var ctx = document.getElementById('canvas').getContext('2d');
+
+    ctx.fillStyle = "yellow";
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 20;
+
+    //    说明开始绘制图形
+    ctx.beginPath();
+    //    起点移动至10，10
+    ctx.moveTo(10, 10);
+    //    绘制一条道指定坐标的子路径
+    ctx.lineTo(110, 10);
+    ctx.lineTo(110, 120);
+    //    尝试闭合现有路径
+    ctx.closePath();
+    //    填充现有路径
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(150, 10);
+    ctx.lineTo(200, 10);
+    ctx.lineTo(200, 120);
+    ctx.lineTo(190, 120);
+    ctx.closePath();
+
+    //    描绘现有路径 如果还没有闭合 则少一条边
+    ctx.stroke();
+    ctx.fill();
+
+    var xpos = 250;
+    //    三个线条样式分别是 默认的矩形 还有会超出范围的圆角线跟矩形线
+    styles = ["butt", "round", "square"];
+    for (var i = 0; i < styles.length; i++) {
+        ctx.beginPath();
+        ctx.lineCap = styles[i];
+        ctx.moveTo(xpos, 10);
+        ctx.lineTo(xpos, 120);
+        ctx.stroke();
+        xpos += 50;
+    }
+
+//    绘制矩形
+    ctx.beginPath();
+    ctx.rect(400, 50, 100, 80);
+    ctx.fill();
+    ctx.stroke();
+
+
+
+    var c_arc = document.getElementById('arc').getContext('2d');
+    var point1 = [100, 10];
+    var point2 = [200, 10];
+    var point3 = [200, 110];
+
+    c_arc.fillStyle = "yellow";
+    c_arc.strokeStyle = "skyblue";
+    c_arc.lineWidth = 10;
+
+    c_arc.beginPath();
+    c_arc.moveTo(point1[0], point1[1]);
+    c_arc.arcTo(point2[0], point2[1], point3[0], point3[1], 100);
+    c_arc.stroke();
+
+    drawPoint(point1[0], point1[1]);
+    drawPoint(point2[0], point2[1]);
+    drawPoint(point3[0], point3[1]);
+
+    c_arc.beginPath();
+    c_arc.moveTo(point1[0], point1[1]);
+    c_arc.lineTo(point2[0], point2[1]);
+    c_arc.lineTo(point3[0], point3[1]);
+    c_arc.stroke();
+
+    function drawPoint(x, y) {
+        c_arc.lineWidth = 1;
+        c_arc.strokeStyle = "red";
+        c_arc.strokeRect(x-2, y-2, 4, 4);
+    }
+</script>
+</body>
+</html>

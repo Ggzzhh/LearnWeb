@@ -24,3 +24,13 @@
 p.cleared {
     clear: both;
 }
+
+canvas {
+    border: solid thin black;
+    margin: 10px;
+    padding: 5px;
+}
+
+body > * {
+    float: left;
+}

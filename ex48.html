@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动 draggable</title>
+    <style>
+        #src > * {
+            float: left;
+            padding: 2px;
+            margin: 4px;
+            width: 300px;
+            height: 300px;
+        }
+        #target, #banana {
+            border: medium solid red;
+
+        }
+        #banana2 {
+            border: solid medium #66b9ff;
+        }
+
+        #banana3 {
+            border: medium solid #9b9aff;
+        }
+
+        img.dragged {
+            border: thin double black;
+        }
+        table {
+            margin: 4px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+<div id="src">
+    <img draggable="true" id="banana" src="banana.jpg" alt="banana" />
+    <img draggable="true" id="banana2" src="banana.jpg" alt="banana" />
+    <img draggable="true" id="banana3" src="banana.jpg" alt="banana" />
+    <div id="target">
+        <p id="msg">移动到这里</p>
+    </div>
+    <table id="data" border="1">
+
+    </table>
+</div>
+<script>
+    var src = document.getElementById('src');
+    var target = document.getElementById('target');
+    var msg = document.getElementById('msg');
+
+    src.ondragstart = function (e) {
+        e.target.classList.add("dragged");
+    }
+
+    src.ondragend = function (e) {
+        e.target.classList.remove("dragged");
+        msg.innerHTML = "移动这里";
+    }
+
+    src.ondrag = function (e) {
+        msg.innerHTML = e.target.id;
+    }
+
+    target.ondragenter = handleDrag;
+    target.ondragover = handleDrag;
+
+    function handleDrag(e) {
+        e.preventDefault();
+    }
+
+    target.ondrop = function (e) {
+        var files = e.dataTransfer.files;
+        var tableElement = document.getElementById('data');
+        tableElement.innerHTML =
+            "<tr><th>Name</th><th>Type</th><th>Size</th></tr>";
+        for (var i = 0; i < files.length; i++) {
+            var row = "<tr><td>" + files[i].name + "</td><td>" +
+                files[i].type +
+                    "</td><td>" + files[i].size + "</td></tr>";
+            tableElement.innerHTML += row;
+        }
+        e.preventDefault();
+    }
+
+</script>
+
+</body>
+</html>
