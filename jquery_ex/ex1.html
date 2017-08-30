@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>example 1</title>
+
+</head>
+<body>
+<p id="this" class="this">你点按钮<b>我</b>就消失</p>
+<p>我还在</p>
+<button class="hide">消失</button>
+<button class="show">出现</button>
+<button class="toggle">来回切换</button>
+
+<script src="../js/jquery-3.2.1.js" ></script>
+<script>
+    $(function () {
+        $('button.hide').click(function () {
+            $('p.this > b').hide(500);
+        });
+
+        $('button.show').click(function () {
+            $('p.this > b').show(1000);
+        });
+
+        $('button.toggle').click(function () {
+            $('p.this > b').toggle(200);
+        });
+    });
+
+
+</script>
+</body>
+</html>

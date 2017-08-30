@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery--动画animate</title>
+    <style>
+        div {
+            border: solid thin black;
+            background-color: #85ff97;
+            width: 200px;
+            height:200px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<button>点</button>
+<button id="stop">stop</button>
+    <div id="div">
+        如果不想等待可以按stop, stop中第一个参数为true可以停止动画，否则就暂停一下， 第二个跟第一个参数同时为true，
+        则停止动画但是完成动作, 也就是说stop(true(全部停止), true(跳过动画))
+    </div>
+
+<script src="../js/jquery-3.2.1.js" ></script>
+<script>
+    $(document).ready(function () {
+        $('button').click(function () {
+            var div = $('div');
+            div.animate({marginLeft:'200px'}, 1000);
+            div.animate({width:'220px'}, function () {
+                div.slideUp(2000).slideDown(2000).css("background-color",'skyblue');
+            });
+        });
+        $('#stop').click(function () {
+            $('#div').stop(true, true);
+        });
+    })
+</script>
+</body>
+</html>

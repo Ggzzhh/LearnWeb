@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery--操作Dom(1)</title>
+</head>
+<body>
+<p id="test">这是段落中的 <b>粗体</b> 文本。</p>
+<label><input placeholder="hehe" /></label>
+<div>
+    <a href="http://www.sina.com" id="alink" >现在这个是新浪</a>
+</div>
+<button id="btn1">显示文本</button>
+<button id="btn2">显示 HTML</button>
+<button id="btn3">设置值</button>
+<button id="btn4">更改连接地址为百度</button>
+<script src="../js/jquery-3.2.1.js"></script>
+<script>
+    $(function () {
+//        这些函数都有回调函数callback
+        $('#btn1').click(function () {
+            alert("Text: " + $('#test').text());
+        });
+        $('#btn2').click(function () {
+            var p = $('#test');
+            alert("<div>" + p.html() + '</div>');
+        });
+        $('#btn3').click(function () {
+            $('input').val('额呵呵呵呵');
+        });
+        $('#btn4').click(function () {
+            $('#alink').text('百度').attr({'href':'https://www.baidu.com', 'target': '_black'});
+        });
+    })
+</script>
+</body>
+</html>
