@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery--AJAX</title>
+    <style>
+        div {
+            border: thin solid black;
+            background-color: #c0c0c0;
+            width: 200px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"><h2>使用 jQuery AJAX 来改变文本</h2></div>
+<button>获得外部内容</button>
+
+
+<script src="../js/jquery-3.2.1.js"></script>
+<script>
+    $(function () {
+        var div_text = $('div').text();
+        $('#div1')
+            .mouseenter(function () {
+                $(this).load('test.text #p1');
+            })
+            .mousedown(function () {
+                $(this).load('test.text', function(responseTxt, statusTxt, xhr) {
+                    if(statusTxt === 'success')
+                        alert('成功' + xhr.status + ":" + xhr.statusText);
+                    if(statusTxt === 'error')
+                        alert('error: ' + xhr.status + "    内容：" + xhr.statusText);
+                });
+            })
+            .mouseleave(function () {
+                $(this).text(div_text);
+            });
+        $('button').click(function () {
+            $.get('ex9.html', function (data, status) {
+                alert("<p>响应状态码： " + status + "</p>" + data);
+            })
+//            同理还有post方法等 $.post(url, data, callback)
+        });
+    });
+
+
+</script>
+</body>
+</html>
