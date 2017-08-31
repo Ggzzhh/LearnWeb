@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery--dom操作（2）</title>
+</head>
+<body>
+<p>这是一个段落</p>
+<button onclick="appendText()">点击添加段落</button>
+<button id="after">after</button>
+<button id="before">before</button>
+<button id="remove">删除before 并清空after</button>
+
+<script src="../js/jquery-3.2.1.js" ></script>
+<script>
+function appendText() {
+    var text1 = "<p>测试1</p>";   // 用html创建新元素
+    var text2 = $("<p></p>").text('测试2'); //用jQuery来创建
+    var text3 = document.createElement("p");
+    text3.innerHTML = "测试3"; // 通过dom来创建
+    $('body').append(text1, text2, text3);
+}
+$(function () {
+    var text1 = "<b>I</b>";
+    var text2 = $('<code></code>').text(' Love ');
+    var text3 = document.createElement('big');
+    text3.innerHTML = "Python";
+    $('#after').click(function () {
+        $('p:first').after(text1, text2, text3);
+    });
+    $('#before').click(function () {
+        $('p:first').before('之前');
+    })
+    $('#remove').click(function () {
+        $('button').remove('#before'); //删除id为before的button
+        $('#after').empty(); // 清空id为after的元素 只删除内容 不清除属性 按钮依然有作用
+    });
+})
+</script>
+</body>
+</html>

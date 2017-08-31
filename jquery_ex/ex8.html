@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery--遍历</title>
+    <style>
+        div, ul, li, p, span {
+            border: thin solid black;
+            display: block;
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="ancestors">
+    <div style="width:500px;" class="div1">div (曾祖父)
+        <ul>ul (祖父)
+            <li>li (直接父)
+                <span>span</span>
+            </li>
+        </ul>
+    </div>
+
+    <div style="width:500px;" class="class1">div (祖父)
+        <p>p (直接父)
+            <span>span</span>
+        </p>
+    </div>
+</div>
+
+<button>显示span的parent</button>
+<button>显示span的parents并且是parents参数的元素</button>
+<button>显示p的children的元素 并找到div的li元素变蓝色字</button>
+<button>div的兄弟元素内容替换</button>
+
+<script src="../js/jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('button:first').click(function () {
+//            parent返回直接父元素对象
+            $('span').parent().css({'border':'thin solid red'});
+        });
+        $('button:nth-child(3)').click(function () {
+//            parents返回所有父元素对象 参数可制定某个条件  parentsUntil('div') 则可以返回界定在两者之间的元素 如span何div之间
+            $('span').parents('div').css({'border':'medium double blue'});
+        });
+        $('button:nth-of-type(3)').click(function () {
+//            p的直接子元素 children的参数可以选择元素  find方法可以在其所有的子元素中找到响应条件的元素
+            $('p').children().css("color", "red");
+            $('div').find('li').css("color", 'blue');
+        });
+        //    还有几个兄弟元素的例子给省略掉了 nextAll(所有之后的) 、nextUntil(谁跟谁之间)、
+        //      prev(之前的元素)、 prevAll(之前所有的)、 prevUntil(谁到谁之间)
+        $('button:last').click(function () {
+            $('div').siblings('div.div1').text('这些都是p的兄弟元素');
+            $('.div1').next().css("color", "red");
+        });
+
+    });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery--过滤</title>
+</head>
+<body>
+<h1>欢迎来到我的主页</h1>
+<p>我是唐老鸭 (index 0)。</p>
+<p class="only">唐老鸭 (index 1)。</p>
+<p>我住在 哪？ (index 2)。</p>
+<p>我最好的朋友是米老鼠 (index 3)。</p>
+
+<button>点击变色 第一个蓝色 第二个红色 第三个绿色 最后一个灰色 只有第二个是灰色的 其余都是黑色的</button>
+
+<script src="../js/jquery-3.2.1.js"></script>
+<script>
+    $(function () {
+        $('button').click(function () {
+            $('p').first().css("color", 'blue');
+            $('p').eq(1).css('color', 'red');
+            $('p').eq(2).css('color', 'green');
+            $('p').last().css('color', 'grey');
+            $('p').filter('.only').css("background-color", 'grey');
+            $('p').not('.only').css("background-color", 'black');
+        });
+    })
+</script>
+</body>
+</html>

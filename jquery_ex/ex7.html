@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery--Dom操作css</title>
+    <style>
+        .important
+        {
+            font-weight:bold;
+            font-size:xx-large;
+        }
+
+        .blue
+        {
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+<h1>标题 1</h1>
+<h2>标题 2</h2>
+<p>这是一个段落。</p>
+<p>这是另一个段落。</p>
+<div>这是非常重要的文本！</div>
+<br>
+<button>向元素添加类</button>
+<button id="catch">获取div的css颜色属性</button>
+<button id="put">设置div的css颜色属性</button>
+
+<script src="../js/jquery-3.2.1.js"></script>
+<script>
+    $(function () {
+       $('button:first').click(function () {
+           $('div').toggleClass('blue'); //添加或者删除class
+           $('h1, h2, p').addClass('important blue'); //添加类
+           $('h1').removeClass('blue'); // 删除类
+       });
+       $('#catch').click(function () {
+           var color = $('div').css('color');
+           alert(color);
+       });
+       $('#put').click(function () {
+//           css()函数可以获取或者设置css属性的值，设置单个属性用，分割。多个属性用字典或者叫对象分割，width是获取或者设置宽度，height同理
+//           还有innerWidth()，outerWidth(true)等函数，一个是获取带内边距的属性，另一个是获取带border带内边距的属性，参数为true则带外边距
+           $('div').css({"color":"red", "background-color":"#abcccd"}).width('500').height('500');
+       });
+    });
+</script>
+</body>
+</html>
